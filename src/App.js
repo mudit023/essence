@@ -74,8 +74,8 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 0,
-            height: 0,
+            width: 177,
+            height: 144,
           }}
         />
 
