@@ -4,11 +4,18 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import { showNotification } from "./components/notification";
 import Webcam from "react-webcam";
+import Input from "./components/input/Input";
+import moment from "moment";
+// import Header from "./components/Header/Header";
+// import { useState } from "react";
+
 // import { drawKeypoints, drawSkeleton } from "./components/utilities";
 
 function App() {
   const webcRef = useRef(null);
   // const canvRef = useRef(null);
+  const time = moment().add(1, "hours");
+  const [flag, setFlag] = useState(false);
 
   const runPosenet = async () => {
     const net = await posenet.load({
@@ -64,18 +71,30 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Input date={time} flag={flag}></Input>
+        <div className="button-outer">
+          {" "}
+          <input
+            type="submit"
+            onClick={function () {
+              setFlag(!flag);
+            }}
+            className="button"
+            value="Start  / Reset"
+          ></input>
+        </div>
         <Webcam
           ref={webcRef}
           style={{
             position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
+            // marginLeft: "0px",
+            marginRight: "0px",
             left: 0,
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 720,
-            height: 420,
+            width: 176,
+            height: 144,
           }}
         />
 
